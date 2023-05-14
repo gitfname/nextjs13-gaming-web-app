@@ -39,7 +39,7 @@ export default function Home() {
             <NavLink text="محبوب ترین" />
           </div>
 
-          <div className="relative group">
+          <div className="relative group" tabIndex={0}>
             <Image
               width={150}
               height={150}
