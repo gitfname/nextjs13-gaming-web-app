@@ -1,113 +1,204 @@
-import Image from 'next/image'
+import Image from "next/image"
+import Link from "next/link"
+import { AiOutlineSearch } from "react-icons/ai"
+import { SlControlPlay } from "react-icons/sl"
+import GameCard_1 from "@/components/GameCard_1"
+import gePopularGames from "@/lib/db/gePopularGames"
+import NewGamesSection from "@/components/NewGamesSection"
+import GameCategoriesSection from "@/components/GameCategoriesSection"
+import MobileMenu from "@/components/MobileMenu"
+
+
+function NavLink({text, href=""}) {
+  return (
+    <Link href={href} className="text-sm leading-none font-semibold text-[#898792] py-2 px-3 rounded-lg hover:bg-[#b88ec4] hover:text-white transition-colors duration-200">{text}</Link>
+  )
+}
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className='w-full h-screen grid grid-cols-1 grid-rows-[max-content_1fr]'>
+
+      {/* top side */}
+      <div className="p-3 px-7 shadow-sm shadow-black/5 flex items-center justify-between gap-x-3 w-full">
+
+        <div className="lg:hidden">
+          <MobileMenu />
         </div>
+        
+        <div className="relative w-full max-w-xs max-lg:hidden">
+          <AiOutlineSearch className="w-[18px] h-[18px] fill-gray-800 pointer-events-none absolute top-1/2 left-3 -translate-y-1/2" />
+          <input type="text" placeholder="جستجو کنید" className="placeholder-gray-400 text-sm font-semibold text-right focus:outline-none text-gray-800 w-full h-full rounded-lg bg-gray-100 p-2 px-3 pl-8" />
+        </div>
+
+        <div className="flex items-center gap-x-0.5">
+          <div className="max-lg:hidden">
+            <NavLink text="دسته بندی" />
+          </div>
+          <div className="max-lg:hidden">
+            <NavLink text="محبوب ترین" />
+          </div>
+
+          <div className="relative group">
+            <Image
+              width={150}
+              height={150}
+              alt=""
+              src="/game-images/thumbnail/img14.webp"
+              className="w-10 h-10 shadow-sm shadow-black/10 rounded-full object-cover object-center"
+            />
+            <div className="absolute space-y-3 -bottom-2 left-0 w-40 rounded-lg p-5 px-3.5 shadow-lg shadow-black/10 bg-gray-50 translate-y-full opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto -translate-x-[calc(100%-20px)] transition-opacity duration-300 z-20">
+              <p className="text-right text-sm font-semibold text-slate-800">تنظیمات</p>
+              <p className="text-right text-sm font-semibold text-slate-800">پیام ها</p>
+              <p className="text-right text-sm font-semibold text-red-500">خروج</p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="w-full h-full overflow-y-auto pt-8 pb-10"> 
+
+        {/* banner */}
+        <div className="w-11/12 md:w-10/12 rounded-xl h-60 bg-gradient-to-r from-pink-200 to-[#ff4991] mx-auto relative">
+
+          <Image
+            width={400}
+            height={400}
+            alt=""
+            src="/gamier-character.png"
+            className="w-52 h-52 absolute left-4 bottom-0"
+          />
+
+          <div className="absolute top-1/2 right-10 -translate-y-1/2">
+            <p className="text-white font-bold text-lg text-right">به دنیای بازی ها خوش آمدی</p>
+            <p className="text-white font-bold text-lg text-right">پر هیجان و پرچالش</p>
+            <p className="text-white/70 font-medium mt-2 text-sm text-right max-w-[40ch]">
+              دنیای پر از برترین بازیها برای برترین گیمر ها
+            </p>
+            
+            <button className="ml-auto mt-6 py-2 active:scale-95 transition-transform duration-200 px-3 rounded-lg bg-white shadow-md shadow-black/20 text-black text-sm font-semibold flex items-center gap-x-1">
+              <SlControlPlay className="w-[14px] h-[14px] fill-slate-900 rotate-180" />
+              <span>شروع کن</span>
+            </button>
+          </div>
+
+        </div>
+
+
+        {/* games categories */}
+        <div className="w-full overflow-y-hidden mt-12 px-5 md:px-10">
+          {/* <div className="w-full overflow-y-auto">
+
+          <div className="flex py-2 flex-nowrap w-max items-center gap-x-4 ">
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+                        <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <GameCategoryCard_1
+                img="/game-images/thumbnail/img13.webp"
+                gamesCount={106}
+              />
+            </div>
+          </div>
+          </div> */}
+          <GameCategoriesSection />
+        </div>
+        
+
+        {/* popular games */}
+        <div className="w-full mt-12 px-5 md:px-10">
+
+          <div className="flex items-center justify-between w-full">
+            <p className="text-xs font-medium text-slate-500 p-2 px-3 rounded-lg hover:bg-transparent/5 hover:text-slate-600 transition-colors duration-200 cursor-pointer">بیشتر</p>
+            <p className="text-sm font-bold text-slate-900">محبوب ترین ها</p>
+          </div>
+
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-7 mt-4">
+            {
+              gePopularGames.map(item => <GameCard_1 {...item} />)
+            }
+          </div>
+
+        </div>
+
+        {/* new games */}
+        <div className="w-full mt-12 px-5 md:px-10">
+          <NewGamesSection />
+        </div>
+          
+
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   )
 }
