@@ -47,7 +47,7 @@ export default function Home() {
               src="/game-images/thumbnail/img14.webp"
               className="w-10 h-10 shadow-sm shadow-black/10 rounded-full object-cover object-center"
             />
-            <div className="absolute space-y-3 -bottom-2 left-0 w-40 rounded-lg p-5 px-3.5 shadow-lg shadow-black/10 bg-gray-50 translate-y-full opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto -translate-x-[calc(100%-20px)] transition-opacity duration-300 z-20">
+            <div className="absolute space-y-3 -bottom-2 left-0 w-40 rounded-lg p-5 px-3.5 shadow-lg shadow-black/10 bg-gray-50 translate-y-full opacity-0 pointer-events-none group-focus:opacity-100 group-focus:pointer-events-auto -translate-x-[calc(100%-20px)] transition-opacity duration-300 z-20">
               <p className="text-right text-sm font-semibold text-slate-800">تنظیمات</p>
               <p className="text-right text-sm font-semibold text-slate-800">پیام ها</p>
               <p className="text-right text-sm font-semibold text-red-500">خروج</p>
